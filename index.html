@@ -35,7 +35,7 @@
 
     <script>
         $(document).ready(function () {
-            const socket = io.connect(); // otomatis di heroku
+            const socket = io(); // otomatis di heroku
             //const socket = io.connect('http://localhost:5000', { path: '/socket.io' });
             socket.on('pesan', function (msg) {
                 $('.logs').append($('<li>').text(msg));
@@ -55,7 +55,7 @@
                 nohp: $('#noHp').val(),
                 pesan: $('#isiPesan').val(),
             }
-            const socket = io.connect();
+            const socket = io();
             //const socket = io.connect('http://localhost:5000', { path: '/socket.io' });
             socket.emit('kirimWa', data);
             socket.on('pesan', function (msg) {
