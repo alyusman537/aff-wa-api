@@ -4,6 +4,7 @@ const socketIO = require('socket.io')
 const qrcode = require('qrcode');
 const fs = require('fs');
 const http = require('http');
+const port = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.json());
@@ -90,6 +91,6 @@ io.on('connection', function (socket) {
     })
 
 });
-server.listen(5000, function () {
+server.listen(port, function () {
     console.log('server berjalan di port: 5000');
 })
