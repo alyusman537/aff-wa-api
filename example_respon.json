@@ -1,0 +1,30 @@
+{
+    "status": true,
+    "pesan": {
+        "id": {
+            "fromMe": true,
+            "remote": {
+                "server": "c.us",
+                "user": "6285850468588",
+                "_serialized": "6285850468588@c.us"
+            },
+            "id": "41AE11B5ADB5A7EC4A32A6D1DAA602ED",
+            "_serialized": "true_6285850468588@c.us_41AE11B5ADB5A7EC4A32A6D1DAA602ED"
+        },
+        "ack": 0,
+        "hasMedia": false,
+        "body": "dkjsdf jsdfskjdfslkdjf slkjfslkdfsd sf ds",
+        "type": "chat",
+        "timestamp": 1639889354,
+        "from": "628113216472@c.us",
+        "to": "6285850468588@c.us",
+        "deviceType": "android",
+        "isForwarded": false,
+        "forwardingScore": 0,
+        "isStarred": false,
+        "fromMe": true,
+        "hasQuotedMsg": false,
+        "vCards": [],
+        "mentionedIds": []
+    }
+}

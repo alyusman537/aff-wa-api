@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Wak Eblas</title>
+</head>
+
+<body>
+    <div id="app">
+        <container>
+            <h3>App Wak Eblas </h3>
+            <p>Adalah API WA server yang telah menggunakan socket.io <br>
+                sehingga bisa dipanggil dari client manapun yang terhubung dengan server.</p>
+            <img src="" alt="QR Code" id="qrcode">
+            <br>
+            <label for="">Nomor HP</label><input type="text" id="noHp">
+            <br>
+            <label for="">Pesan</label><input type="text" id="isiPesan">
+            <button onclick="kirimPesan()">Kirim</button>
+            <h4>Logs:</h4>
+            <ul class="logs"></ul>
+        </container>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.min.js"
+        integrity="sha512-I9p4eOeWXGM9m5GhJYd3UDUA5Lr+Epp5e4ykWFYW9hv3jZqdR92S5p+ApMSWuMaV4E+JqILepP1G9kNer4AFGQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            const socket = io.connect('http://localhost:5000', { path: '/socket.io' });
+            socket.on('pesan', function (msg) {
+                $('.logs').append($('<li>').text(msg));
+            });
+            socket.on('qr', function (src) {
+                $('#qrcode').attr('src', src);
+            });
+            socket.on('siap', function (src) {
+                $('#qrcode').hide();
+            });
+            socket.on('authenticated', function (src) {
+                $('#qrcode').hide();
+            });
+        });
+        const kirimPesan = function () {
+            let data = {
+                nohp: $('#noHp').val(),
+                pesan: $('#isiPesan').val(),
+            }
+            const socket = io.connect('http://localhost:5000', { path: '/socket.io' });
+            socket.emit('kirimWa', data);
+            socket.on('pesan', function (msg) {
+                $('.logs').append($('<li>').text(msg));
+            });
+
+            $('#noHp').val('');
+            $('#isiPesan').val('');
+
+        }
+    </script>
+</body>
+
+</html>
